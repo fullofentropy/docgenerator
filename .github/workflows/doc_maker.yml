@@ -1,6 +1,6 @@
 # setting some variables
 env:
-  FOLDER_PREFIX_NAME: public
+  FOLDER_PREFIX_NAME: docs
 
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 name: The document generator
