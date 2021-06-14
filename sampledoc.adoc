@@ -1,6 +1,6 @@
 = My Sample Document Using AsciiDoc Generator
 :page-description: Sample Doc Using Funny Monologues as the Theme.
-:byline: This is an attempt to make an Documentation Generator using an AsciiDoc generator in GitHubs Infrastructure.  When I am able to get this hardened out well, I will make a similar variation using Gitlab and perhaps lookinto expanding it using other technologies.  Feel free to improve upon this any or make suggestions if it interests you.  I pulled some of the text from https://entertainism.com/funny-monologues and I reviewed https://github.com/github/actions-cheat-sheet  and https://github.com/actions while making this.
+:byline: This is an attempt to make an Documentation Generator using an AsciiDoc generator in GitHubs Infrastructure.  When I am able to get this hardened out well, I will make a similar variation using Gitlab and perhaps lookinto expanding it using other technologies.  Feel free to improve upon this any or make suggestions if it interests you.  I pulled some of the text from https://entertainism.com/funny-monologues and I reviewed https://github.com/github/actions-cheat-sheet  and https://github.com/actions while making this. 
 :pdf-width: 210mm
 :pdf-height: 297mm
 
