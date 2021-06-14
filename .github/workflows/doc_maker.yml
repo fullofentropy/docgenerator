@@ -1,0 +1,78 @@
+# setting some variables
+env:
+  DOCUMENT_PREFIX_NAME: sampledoc
+
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+name: The document generator
+# Never run for commited files in the master branch UNLES
+# a file is comitted as an "adoc" or in the theme directory.
+on:
+  push:
+    branches-ignore:
+      - 'master'
+    paths:
+      - '**.adoc'
+      - 'theme/**'
+
+jobs:
+  build:
+    # pick container to run this job on
+    runs-on: ubuntu-latest
+    # define steps to execute on this build.
+    steps:
+    - name: Checkout
+      # https://github.com/actions/checkout  
+      # We are using tag v2 of this github actions helper to check out our repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # this is intended to help with the Publish Changes step.
+
+    - name: Install fonts
+      # Installing the fonts we wnat to use for our generator
+      # this is done by copying the *.otf font files into the containers ~/.font dirceotry
+      # and then building it into this systems cache using fc-cache
+      # https://www.geeksforgeeks.org/fc-cache-command-in-linux-with-examples/
+      run: |
+        mkdir ~/.fonts
+        cp theme/fonts/*.otf ~/.fonts
+        fc-cache -force -verbose
+
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        check-latest: true
+
+    - name: Cache node modules
+      # https://github.com/actions/cache/blob/v2/examples.md#node---npm  Example use
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          modules-
+
+    - name: NPM Install
+      run: npm install
+      env:
+        CI: true
+
+    - name: NPM test 
+      run: npm test
+
+    - name: AsciiDoctor-PDF
+      # this will process *.adoc files to generate documents
+      run: npm run generate-pdf
+
+    - name: Commit generated files
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "Actions"
+        git add ${{ env.DOCUMENT_PREFIX_NAME }}
+        git commit -m 'AsciiDoctor-PDF build from Actions'
+
+    - name: Publish Changes with a Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}

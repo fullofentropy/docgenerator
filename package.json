@@ -1,0 +1,29 @@
+{
+  "name": "sampledoc",
+  "version": "0.0.1",
+  "description": "AsciiDoc Sample",
+  "main": "index.js",
+  "scripts": {
+    "generate-pdf": "asciidoctor-pdf sampledoc.adoc --template-require ./theme/template.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullofentropy/docgenerator.git"
+  },
+  "keywords": [
+    "github",
+    "actions",
+    "asciidoc",
+    "example"
+  ],
+  "author": "Richard Boettcher",
+  "license": "GNU GENERAL PUBLIC LICENSE V3",
+  "bugs": {
+    "url": "https://github.com/fullofentropy/docgenerator.git"
+  },
+  "homepage": "https://github.com/fullofentropy/docgenerator#readme",
+  "dependencies": {
+    "@asciidoctor/core": "^2.0.3",
+    "asciidoctor-pdf": "^1.0.0-alpha.3"
+  }
+}
