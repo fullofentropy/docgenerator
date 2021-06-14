@@ -62,7 +62,10 @@ jobs:
 
     - name: AsciiDoctor-PDF
       # this will process *.adoc files to generate documents
-      run: npm run generate-pdf
+      run: |
+        npm run generate-pdf
+        npm run generate-pdf2
+        npm run generate-pdf3
 
     - name: Commit generated files
       run: |

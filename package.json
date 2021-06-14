@@ -4,7 +4,9 @@
   "description": "AsciiDoc Sample",
   "main": "index.js",
   "scripts": {
-    "generate-pdf": "asciidoctor-pdf sampledoc.adoc --template-require ./theme/template.js"
+    "generate-pdf": "asciidoctor-pdf ./public/sampledoc.adoc --template-require ./theme/template.js",
+    "generate-pdf2": "asciidoctor-pdf ./public/cv.adoc",
+    "generate-pdf3": "asciidoctor-pdf ./public/theming-guide.adoc"
   },
   "repository": {
     "type": "git",
